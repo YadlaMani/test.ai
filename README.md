@@ -1,7 +1,7 @@
 
 # tset.ai - Personalized Test & Feedback Platform
 
-Welcome to KnowledgeHub, a customizable online platform where users can test their knowledge on any subject they choose. Users can easily create a personalized quiz, select topics, set the number of questions, define difficulty levels, and choose the type of test they wish to take, such as MCQs or fill-in-the-blank questions. Upon completing the test, they will receive detailed feedback to help them identify areas for improvement and guide their learning journey.
+Welcome to test.ai, a customizable online platform where users can test their knowledge on any subject they choose. Users can easily create a personalized quiz, select topics, set the number of questions, define difficulty levels, and choose the type of test they wish to take, such as MCQs or fill-in-the-blank questions. Upon completing the test, they will receive detailed feedback to help them identify areas for improvement and guide their learning journey.
 
 ## Features
 
@@ -38,7 +38,7 @@ To run this project locally, ensure you have the following:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/knowledgehub.git
+   git clone https://github.com/YadlaMani/test.ai
    cd knowledgehub
    ```
 
