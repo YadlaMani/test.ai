@@ -1,4 +1,3 @@
-
 # test.ai - Personalized Test & Feedback Platform
 
 Welcome to test.ai, a customizable online platform where users can test their knowledge on any subject they choose. Users can easily create a personalized quiz, select topics, set the number of questions, define difficulty levels, and choose the type of test they wish to take, such as MCQs or fill-in-the-blank questions. Upon completing the test, they will receive detailed feedback to help them identify areas for improvement and guide their learning journey.
@@ -14,7 +13,7 @@ Welcome to test.ai, a customizable online platform where users can test their kn
   - Time limits for the quiz
 - **Real-Time Assessments**: Immediate scoring based on users' test results.
 - **Personalized Feedback**: Tailored feedback is provided, helping users improve in specific areas.
-- **Progress Tracking**: Users can track their performance over time.
+- **Progress Tracking**: Users can track their performance over time...
 
 ## Tech Stack
 
@@ -37,17 +36,20 @@ To run this project locally, ensure you have the following:
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/YadlaMani/test.ai
    cd test.ai
    ```
 
 2. Install the dependencies:
+
    ```bash
    npm install
    ```
 
 3. Set up your environment variables. Create a `.env.local` file in the root directory and configure the following:
+
    ```env
    GEMINI_API_KEY=your-gemini-api-key
    MONGODB_URI=your-mongodb-uri
@@ -55,6 +57,7 @@ To run this project locally, ensure you have the following:
    ```
 
 4. Run the development server:
+
    ```bash
    npm run dev
    ```
