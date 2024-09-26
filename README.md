@@ -13,7 +13,7 @@ Welcome to test.ai, a customizable online platform where users can test their kn
   - Time limits for the quiz
 - **Real-Time Assessments**: Immediate scoring based on users' test results.
 - **Personalized Feedback**: Tailored feedback is provided, helping users improve in specific areas.
-- **Progress Tracking**: Users can track their performance over time.
+- **Progress Tracking**: Users can track their performance over time..
 
 ## Tech Stack
 
