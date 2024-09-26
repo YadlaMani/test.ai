@@ -13,7 +13,7 @@ Welcome to test.ai, a customizable online platform where users can test their kn
   - Time limits for the quiz
 - **Real-Time Assessments**: Immediate scoring based on users' test results.
 - **Personalized Feedback**: Tailored feedback is provided, helping users improve in specific areas.
-- **Progress Tracking**: Users can track their performance over time...
+- **Progress Tracking**: Users can track their performance over time.
 
 ## Tech Stack
 
@@ -21,7 +21,7 @@ Welcome to test.ai, a customizable online platform where users can test their kn
 - **Backend API**: Gemini API
 - **Styling**: Tailwind CSS for a sleek and responsive UI
 - **Database**: MongoDB for user data and quiz records
-- **State Management**: Redux/Context API for state handling...
+- **State Management**: Redux/Context API for state handling.
 
 ## Getting Started
 
