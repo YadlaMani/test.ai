@@ -21,7 +21,7 @@ Welcome to test.ai, a customizable online platform where users can test their kn
 - **Backend API**: Gemini API
 - **Styling**: Tailwind CSS for a sleek and responsive UI
 - **Database**: MongoDB for user data and quiz records
-- **State Management**: Redux/Context API for state handling
+- **State Management**: Redux/Context API for state handling...
 
 ## Getting Started
 
