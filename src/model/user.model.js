@@ -16,8 +16,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Password is required'],
   },
+  role: {
+    type: String,
+    enum: ['student', 'working professional'],
+    required: [true, 'Role is required'],
+    default: 'student',
+  }
 }, { timestamps: true });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 export default User;
+
