@@ -45,6 +45,9 @@ export const authOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET || "secret",
+  pages: {
+    signIn: '/auth/signin',
+  },
   callbacks: {
     async session({ token, session }) {
       if (token?.sub) {
