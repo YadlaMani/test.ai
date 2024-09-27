@@ -5,7 +5,7 @@ import User from '@/model/user.model';
 import dbConnect from '@/lib/dbConnect';
 import { z } from 'zod';
 
-export const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -56,7 +56,8 @@ export const authOptions = {
       return session;
     }
   }
-}
+};
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
+

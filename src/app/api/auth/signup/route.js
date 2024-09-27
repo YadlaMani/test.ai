@@ -1,3 +1,4 @@
+
 import bcrypt from 'bcryptjs';
 import User from '@/model/user.model';
 import dbConnect from '@/lib/dbConnect';
@@ -18,7 +19,7 @@ export async function POST(req) {
   try {
     userSchema.parse({ email, password, name, role });
   } catch (error) {
-    return new Response(JSON.stringify({ message: error.errors }), { status: 400 });
+    return new Response(JSON.stringify({ message: error.errors.map(err => err.message) }), { status: 400 });
   }
 
   const existingUser = await User.findOne({ email });
