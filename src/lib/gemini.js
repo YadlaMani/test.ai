@@ -16,13 +16,10 @@ export async function generateQuestions(testDetails) {
   let text = response.text();
 
   try {
-    // Remove any potential markdown formatting
     text = text.replace(/```json\n?|\n?```/g, "").trim();
 
-    // Attempt to parse the JSON
     const parsedQuestions = JSON.parse(text);
 
-    // Validate the structure of the parsed questions
     if (!Array.isArray(parsedQuestions) || parsedQuestions.length === 0) {
       throw new Error("Invalid question format");
     }
