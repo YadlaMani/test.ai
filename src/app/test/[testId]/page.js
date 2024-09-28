@@ -1,6 +1,7 @@
 import React from "react";
 import { getTestById } from "@/actions";
 import TestQuestion from "@/components/TestQuestion";
+import CountdownTimer from "@/components/ui/CountdownTimer";
 
 export default async function TestPage({ params }) {
   const { testId } = params;
@@ -12,6 +13,7 @@ export default async function TestPage({ params }) {
 
   return (
     <div className="container mx-auto max-w-3xl p-6">
+      <CountdownTimer timeLimit={test.timeLimit} />
       <h1 className="text-3xl font-bold mb-4">{test.title}</h1>
       <p className="mb-4">{test.description}</p>
       <div className="mb-4">
