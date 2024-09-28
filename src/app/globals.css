@@ -57,10 +57,11 @@
   }
 }
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
     @apply bg-background text-foreground;
+    margin: 0; 
+    overflow-x: hidden;
+    height: 100vh;
   }
-}
+
+} 
