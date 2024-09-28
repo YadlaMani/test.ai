@@ -1,18 +1,15 @@
-
 "use client";
 
-import React from 'react';
-import { useSession, signOut } from 'next-auth/react';
-import Link from 'next/link';
+import React from "react";
+import { useSession, signOut } from "next-auth/react";
+import Link from "next/link";
 
 const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-white shadow-md">
-      <div className="text-xl font-bold">
-        Test.ai
-      </div>
+    <nav className="flex justify-between items-center p-4 bg-white shadow-md sticky">
+      <div className="text-xl font-bold">Test.ai</div>
       <div className="flex space-x-4">
         {!session ? (
           <>

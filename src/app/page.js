@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import LocomotiveScroll from "locomotive-scroll";
 import { ImagesSlider } from "../components/ui/ImageSlider";
+import Link from "next/link";
 import lottie from "lottie-web";
 
 const Testimonial = ({ text, author, image }) => (
@@ -14,7 +15,11 @@ const Testimonial = ({ text, author, image }) => (
     transition={{ duration: 0.6, ease: "easeInOut" }}
     viewport={{ once: true }}
   >
-    <img src={image} alt={author} className="w-16 h-16 rounded-full mb-4 shadow-md" />
+    <img
+      src={image}
+      alt={author}
+      className="w-16 h-16 rounded-full mb-4 shadow-md"
+    />
     <blockquote className="italic text-gray-700">"{text}"</blockquote>
     <p className="mt-4 font-semibold text-gray-800">— {author}</p>
   </motion.div>
@@ -22,7 +27,9 @@ const Testimonial = ({ text, author, image }) => (
 
 const FeatureCard = ({ title, description, icon, isLeft }) => (
   <motion.div
-    className={`flex relative mb-16 ${isLeft ? "flex-row-reverse" : "flex-row"}`}
+    className={`flex relative mb-16 ${
+      isLeft ? "flex-row-reverse" : "flex-row"
+    }`}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -31,7 +38,11 @@ const FeatureCard = ({ title, description, icon, isLeft }) => (
       <h2 className="text-3xl font-bold text-gray-800 mb-4">{title}</h2>
       <p className="text-gray-600 mb-4">{description}</p>
     </div>
-    <div className={`absolute ${isLeft ? "left-0" : "right-0"} -bottom-8 w-1/4 flex justify-center`}>
+    <div
+      className={`absolute ${
+        isLeft ? "left-0" : "right-0"
+      } -bottom-8 w-1/4 flex justify-center`}
+    >
       <img
         src={icon}
         alt={title}
@@ -67,7 +78,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={mainRef} className="flex flex-col min-h-screen bg-white text-gray-800 font-['Roboto']">
+    <div
+      ref={mainRef}
+      className="flex flex-col min-h-screen bg-white text-gray-800 font-['Roboto']"
+    >
       <header className="flex flex-col items-start justify-center h-screen p-10 text-left bg-blue-600 relative overflow-hidden rounded-b-3xl">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
@@ -83,7 +97,8 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="relative mt-4 text-xl text-white max-w-2xl z-10 tracking-wide"
         >
-          Create personalized quizzes and receive tailored feedback to enhance your knowledge.
+          Create personalized quizzes and receive tailored feedback to enhance
+          your knowledge.
         </motion.p>
         <motion.a
           href="http://localhost:3000/auth/signup"
@@ -94,7 +109,10 @@ export default function Home() {
         >
           Get Started
         </motion.a>
-        <div ref={animationContainer} className="absolute right-10 top-1/3 w-1/3 hidden md:block"></div>
+        <div
+          ref={animationContainer}
+          className="absolute right-10 top-1/3 w-1/3 hidden md:block"
+        ></div>
       </header>
 
       <main className="flex-grow">
@@ -102,12 +120,18 @@ export default function Home() {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-blue-50 p-10 rounded-lg shadow-lg">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">About Us</h2>
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                About Us
+              </h2>
               <p className="text-gray-600 mb-4">
-                At test.ai, we believe in empowering individuals through personalized learning. Our platform combines technology and educational expertise to provide a unique testing experience.
+                At test.ai, we believe in empowering individuals through
+                personalized learning. Our platform combines technology and
+                educational expertise to provide a unique testing experience.
               </p>
               <p className="mt-4 text-gray-600">
-                With a team of experienced educators and developers, we aim to create a seamless interface for users to engage with their learning materials effectively.
+                With a team of experienced educators and developers, we aim to
+                create a seamless interface for users to engage with their
+                learning materials effectively.
               </p>
             </div>
           </div>
@@ -116,8 +140,12 @@ export default function Home() {
         {/* Services Section */}
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-800 mb-10">Our Features</h2>
-            <p className="text-lg text-gray-600 mb-10">Innovating the way you learn.</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-10">
+              Our Features
+            </h2>
+            <p className="text-lg text-gray-600 mb-10">
+              Innovating the way you learn.
+            </p>
             <FeatureCard
               title="Intelligent Quiz Creation"
               description="Leverage our AI to design quizzes tailored to your preferences, ensuring effective learning."
@@ -148,8 +176,13 @@ export default function Home() {
         {/* Experience Our Platform Section */}
         <section className="py-20 bg-blue-50">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-blue-600 mb-6">Explore test.ai</h2>
-            <p className="text-lg text-gray-700 mb-10">Discover how our innovative features can elevate your learning experience.</p>
+            <h2 className="text-4xl font-bold text-blue-600 mb-6">
+              Explore test.ai
+            </h2>
+            <p className="text-lg text-gray-700 mb-10">
+              Discover how our innovative features can elevate your learning
+              experience.
+            </p>
             <ImagesSlider images={["1.jpeg", "2.jpeg", "3.jpeg"]} />
           </div>
         </section>
@@ -157,10 +190,16 @@ export default function Home() {
         {/* Join Us Section */}
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-800">Join the Learning Revolution</h2>
-            <p className="mt-4 text-lg text-gray-600 mb-10">Become part of a community dedicated to continuous improvement and innovation.</p>
+            <h2 className="text-4xl font-bold text-gray-800">
+              Join the Learning Revolution
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 mb-10">
+              Become part of a community dedicated to continuous improvement and
+              innovation.
+            </p>
+
             <motion.a
-              href="http://localhost:3000/auth/signup"
+              href="/auth/signup"
               className="mt-6 px-8 py-3 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 transition-transform transform hover:scale-105"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -174,11 +213,25 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-10 bg-white">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-800 mb-10">What Our Users Say</h2>
+            <h2 className="text-4xl font-bold text-gray-800 mb-10">
+              What Our Users Say
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Testimonial text="test.ai has transformed my approach to studying!" author="User A" image="/user1.jpg" />
-              <Testimonial text="The personalized feedback is invaluable." author="User B" image="/user2.jpg" />
-              <Testimonial text="A fantastic tool for anyone looking to improve." author="User C" image="/user3.jpg" />
+              <Testimonial
+                text="test.ai has transformed my approach to studying!"
+                author="User A"
+                image="/user1.jpg"
+              />
+              <Testimonial
+                text="The personalized feedback is invaluable."
+                author="User B"
+                image="/user2.jpg"
+              />
+              <Testimonial
+                text="A fantastic tool for anyone looking to improve."
+                author="User C"
+                image="/user3.jpg"
+              />
             </div>
           </div>
         </section>
