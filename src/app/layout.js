@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import { Providers } from "@/lib/providers";
+import ClientSessionProvider from "@/components/ClientSessionProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,13 +25,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={geistSans.variable}>
-          <Navbar />
-          {children}
-          <Toaster position="bottom-right" />
-        </body>
-      </Providers>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+        <ClientSessionProvider>
+          <Providers>
+            <Toaster />
+            <Navbar />
+            {children}
+          </Providers>
+        </ClientSessionProvider>
+      </body>
     </html>
   );
 }

@@ -1,24 +1,30 @@
 import React from "react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
-export default function TestQuestion({ question, index }) {
+const TestQuestion = ({ question, index, onChange, userAnswer }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
+    <div className="bg-white shadow-md rounded-lg p-6 mb-6">
       <h2 className="text-xl font-semibold mb-4">Question {index + 1}</h2>
       <p className="mb-4">{question.question}</p>
-      <div className="space-y-2">
+      <RadioGroup
+        onValueChange={(value) => onChange(value)}
+        value={userAnswer}
+        className="space-y-2"
+      >
         {question.options.map((option, optionIndex) => (
           <div key={optionIndex} className="flex items-center">
-            <input
-              type="radio"
-              id={`q${index}-option${optionIndex}`}
-              name={`question-${index}`}
+            <RadioGroupItem
               value={option}
+              id={`q${index}-option${optionIndex}`}
               className="mr-2"
             />
-            <label htmlFor={`q${index}-option${optionIndex}`}>{option}</label>
+            <Label htmlFor={`q${index}-option${optionIndex}`}>{option}</Label>
           </div>
         ))}
-      </div>
+      </RadioGroup>
     </div>
   );
-}
+};
+
+export default TestQuestion;

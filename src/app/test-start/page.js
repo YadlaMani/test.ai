@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { createTest } from "@/actions";
-import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const TestStartPage = () => {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [testDetails, setTestDetails] = useState({
     title: "",
@@ -17,6 +20,16 @@ const TestStartPage = () => {
     timeLimit: 30,
     tags: "",
   });
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      toast.error("Please log in to create a test", {
+        duration: 3000,
+        position: "top-center",
+      });
+      router.push("/auth/signin");
+    }
+  }, [status, router]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +46,14 @@ const TestStartPage = () => {
       console.error("Failed to create test:", response.error);
     }
   };
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    return null;
+  }
 
   return (
     <div className="container mx-auto max-w-2xl p-6">
