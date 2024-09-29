@@ -14,7 +14,7 @@ const TestResultPage = ({ params }) => {
   useEffect(() => {
     if (status === "unauthenticated") {
       toast.error("Please log in to view test results");
-      router.push("/auth/signin");
+      router.push("/signin");
     } else if (status === "authenticated") {
       fetchTestResult();
     }

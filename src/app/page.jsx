@@ -101,7 +101,7 @@ export default function Home() {
           your knowledge.
         </motion.p>
         <motion.a
-          href="http://localhost:3000/auth/signup"
+          href="http://localhost:3000/signup"
           className="relative mt-6 px-8 py-3 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 transition-transform transform hover:scale-105"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -199,7 +199,7 @@ export default function Home() {
             </p>
 
             <motion.a
-              href="/auth/signup"
+              href="/signup"
               className="mt-6 px-8 py-3 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 transition-transform transform hover:scale-105"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}

@@ -20,7 +20,7 @@ export default function TestPage({ params }) {
   useEffect(() => {
     if (status === "unauthenticated") {
       toast.error("Please log in to take the test");
-      router.push("/auth/signin");
+      router.push("/signin");
     } else if (status === "authenticated") {
       fetchTest();
     }

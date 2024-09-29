@@ -27,7 +27,7 @@ const TestStartPage = () => {
         duration: 3000,
         position: "top-center",
       });
-      router.push("/auth/signin");
+      router.push("/signin");
     }
   }, [status, router]);
 

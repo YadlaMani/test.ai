@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import User from '@/model/user.model';
+import User from '@/models/user.model';
 import dbConnect from '@/lib/dbConnect';
 import { z } from 'zod';
 
@@ -46,7 +46,7 @@ const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET || "secret",
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/signin',
   },
   callbacks: {
     async session({ token, session }) {
