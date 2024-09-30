@@ -92,18 +92,54 @@ export async function getTestResult(resultId, userId) {
     const testResult = await TestResult.findOne({
       _id: resultId,
       userId: userId,
-    }).populate("testId");
+    }).populate({
+      path: "testId",
+      select: "title questions",
+    });
 
     if (!testResult) {
       return { success: false, error: "Test result not found" };
     }
 
+    // Combine test result data with test questions
+    const combinedData = {
+      id: testResult._id.toString(),
+      title: testResult.testId.title,
+      date: testResult.createdAt,
+      score: testResult.score,
+      questions: testResult.testId.questions.map((q, index) => ({
+        text: q.text,
+        userAnswer: testResult.userAnswers[index],
+        correctAnswer: q.correctAnswer,
+      })),
+      analysis: testResult.analysis,
+    };
+
     return {
       success: true,
-      data: JSON.parse(JSON.stringify(testResult)),
+      data: combinedData,
     };
   } catch (error) {
     console.error("Error fetching test result:", error);
     return { success: false, error: "Failed to fetch test result" };
   }
 }
+
+export const getUserTests = async (userId) => {
+  try {
+    await dbConnect();
+    const testResults = await TestResult.find({ userId: userId })
+      .populate("testId", "title")
+      .sort({ createdAt: -1 });
+
+    return testResults.map((result) => ({
+      id: result._id.toString(),
+      title: result.testId.title,
+      date: result.createdAt,
+      score: result.score,
+    }));
+  } catch (error) {
+    console.error("Error fetching user tests:", error);
+    return [];
+  }
+};
