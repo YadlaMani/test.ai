@@ -143,3 +143,25 @@ export const getUserTests = async (userId) => {
     return [];
   }
 };
+
+export async function getAllTests() {
+  try {
+    await dbConnect();
+    const tests = await Test.find(
+      {},
+      {
+        _id: 1,
+        title: 1,
+        description: 1,
+        duration: 1,
+        difficulty: 1,
+        numQuestions: { $size: "$questions" },
+      }
+    ).sort({ createdAt: -1 });
+
+    return JSON.parse(JSON.stringify(tests));
+  } catch (error) {
+    console.error("Error fetching all tests:", error);
+    throw new Error("Failed to fetch tests");
+  }
+}
