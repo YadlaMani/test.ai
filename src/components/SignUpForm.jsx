@@ -48,7 +48,7 @@ export function SignupForm() {
         throw new Error(errorMessage);
       }
 
-      router.push("/");
+      router.push("/dashboard");
     } catch (err) {
       setError(err.message);
     } finally {

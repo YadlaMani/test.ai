@@ -1,3 +1,4 @@
+
 import { getSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 
@@ -7,7 +8,7 @@ export async function middleware(req) {
 
   if (session) {
     if (pathname === "/" || pathname.startsWith("/signin") || pathname.startsWith("/signup")) {
-      return NextResponse.redirect(new URL("/test-start", req.url));
+      return NextResponse.redirect(new URL("/dashboard", req.url));
     }
   } else {
     if (pathname.startsWith("/test") || pathname === "/test-start" || pathname === "/test-result") {
@@ -21,3 +22,4 @@ export async function middleware(req) {
 export const config = {
   matcher: ["/", "/test", "/test-start", "/test-result", "/signin", "/signup"],
 };
+
