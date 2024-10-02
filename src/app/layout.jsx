@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import { Providers } from "@/components/providers";
+import { Footer } from "@/components/Footer";
 
 
 
@@ -26,11 +27,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans dark:bg-black`}>
         <Providers>
           <Toaster />
-          <Navbar />
-          {children}
+          <header className="flex-none w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Navbar />
+          </header>
+          <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 dark:bg-black">
+            {children}
+          </main>
+          <footer>
+            <Footer />
+          </footer>
         </Providers>
       </body>
     </html>
