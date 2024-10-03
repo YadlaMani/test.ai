@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { FeaturesSection } from "@/components/blocks/features-section";
 import { JoinNowSection } from "@/components/JoinNowSection";
 import { TestimonialSection } from "@/components/TestimonialSection";
+import { OurTeamSection } from "@/components/OurTeam";
 
 export default function Home() {
 
@@ -15,6 +16,7 @@ export default function Home() {
       <FeaturesSection />
       <JoinNowSection />
       <TestimonialSection />
+      <OurTeamSection />
     </div>
   );
 }

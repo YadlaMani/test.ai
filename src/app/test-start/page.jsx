@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { createTest } from "@/actions";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const TestStartPage = () => {
   const { data: session, status } = useSession();
@@ -58,7 +59,13 @@ const TestStartPage = () => {
 
   return (
     <div className="container mx-auto max-w-2xl p-6">
-      <div className="bg-white dark:bg-black border dark:border-zinc-800 shadow-lg rounded-lg p-6">
+      <Link href="/dashboard" className="right-4 z-10 flex justify-end">
+        <Button variant="secondary" className="bg-black text-white dark:bg-white dark:text-black">
+          Back to Dashboard
+        </Button>
+      </Link>
+
+      <div className="bg-white dark:bg-black border dark:border-zinc-800 shadow-lg rounded-lg p-6 mt-12">
         <h1 className="text-3xl font-bold mb-6">Initialize Test</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
