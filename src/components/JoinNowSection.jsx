@@ -22,7 +22,7 @@ export function JoinNowSection() {
           Whether you're aiming to sharpen your skills, prepare for tests, or explore new knowledge, we're here to support your journey every step of the way.        </p>
         <div className="flex justify-center items-center mt-4">
           <Link href="/signup">
-            <Button variant="secondary" className="bg-black border w-32 h-14 text-xl">
+            <Button variant="secondary" className="bg-black text-white  border w-32 h-14 text-xl">
               Sign Up Now
             </Button>
           </Link>
