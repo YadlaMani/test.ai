@@ -26,7 +26,7 @@ export function SignupForm() {
     setFormData((prevData) => ({
       ...prevData,
       role: selectedOption.toLowerCase(),
-    })); // Ensure it's lowercase
+    })); 
   };
 
   const handleSubmit = async (e) => {
@@ -35,7 +35,7 @@ export function SignupForm() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export function SignupForm() {
             options={["Student", "Working professional"]}
             selectedOption={
               formData.role.charAt(0).toUpperCase() + formData.role.slice(1)
-            } // Displaying with first letter capital
+            } 
             setSelectedOption={handleDropdownChange}
           />
         </div>
