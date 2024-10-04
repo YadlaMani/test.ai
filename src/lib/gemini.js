@@ -59,9 +59,24 @@ export async function verifyTestWithGemini(test, userAnswers) {
     2. Number of correct answers
     3. Number of wrong answers
     4. A brief analysis of the user's performance, including topics they need to improve
-    5. For each question, whether the user's answer was correct or not, and a brief explanation
+    5. For each question, provide:
+       - Whether the user's answer was correct or not
+       - A brief explanation of why it was correct or incorrect
 
-    Format the response as a JSON object.
+    Format the response as a JSON object with the following structure:
+    {
+      "score": number,
+      "correctAnswers": number,
+      "wrongAnswers": number,
+      "analysis": string,
+      "questionResults": [
+        {
+          "isCorrect": boolean,
+          "explanation": string
+        },
+        ...
+      ]
+    }
   `;
 
   const result = await model.generateContent(prompt);

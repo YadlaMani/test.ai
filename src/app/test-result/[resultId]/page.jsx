@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -39,16 +38,20 @@ const TestResultPage = ({ params }) => {
   }
 
   return (
-    <div className="relative"> {/* Use relative positioning */}
+    <div className="relative">
+      {" "}
+      {/* Use relative positioning */}
       {/* Back to Dashboard button */}
       <div className="absolute top-4 right-4">
         <Link href="/dashboard">
-          <Button variant="secondary" className="bg-black text-white dark:bg-white dark:text-black">
+          <Button
+            variant="secondary"
+            className="bg-black text-white dark:bg-white dark:text-black"
+          >
             Back to Dashboard
           </Button>
         </Link>
       </div>
-
       {/* Main Content */}
       <div className="container mx-auto max-w-3xl p-6">
         <h1 className="text-3xl font-bold mb-6">Test Result</h1>
@@ -65,26 +68,43 @@ const TestResultPage = ({ params }) => {
 
         <h2 className="text-2xl font-bold mb-4">Question Details</h2>
 
-        {result.testId && result.testId.questions ? (
-          result.testId.questions.map((question, index) => (
-            <div key={index} className="bg-white text-black dark:bg-black dark:text-white shadow-md rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold mb-2">Question {index + 1}</h3>
-              <p className="mb-2">{question.question}</p>
+        {result.questions && result.questions.length > 0 ? (
+          result.questions.map((question, index) => (
+            <div
+              key={index}
+              className="bg-white text-black dark:bg-black dark:text-white shadow-md rounded-lg p-6 mb-6"
+            >
+              <h3 className="text-xl font-semibold mb-2">
+                Question {index + 1}
+              </h3>
+              <p className="mb-2">{question.questionText}</p>
+
+              {/* Display Options */}
+              <div className="mb-4">
+                <p className="font-semibold">Options:</p>
+                <ul className="list-disc ml-5">
+                  {question.options.map((option, idx) => (
+                    <li key={idx}>{option}</li>
+                  ))}
+                </ul>
+              </div>
+
               <p className="mb-1">
                 Your Answer:{" "}
-                <span className="font-semibold">
-                  {result.userAnswers[question._id]}
-                </span>
+                <span className="font-semibold">{question.userAnswer}</span>
               </p>
               <p className="mb-1">
                 Correct Answer:{" "}
                 <span className="font-semibold">{question.correctAnswer}</span>
               </p>
               <p className="mt-2 text-sm text-gray-600">
-                {result.userAnswers[question._id] === question.correctAnswer
-                  ? "? Correct"
-                  : "? Incorrect"}
+                {question.isCorrect ? "✓ Correct" : "✗ Incorrect"}
               </p>
+              {question.explanation && (
+                <p className="mt-2 text-gray-500">
+                  Explanation: {question.explanation}
+                </p>
+              )}
             </div>
           ))
         ) : (
@@ -96,4 +116,3 @@ const TestResultPage = ({ params }) => {
 };
 
 export default TestResultPage;
-

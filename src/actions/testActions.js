@@ -67,6 +67,16 @@ export async function submitTest(testId, userAnswers, userId) {
     }
     console.log("Gemini result:", geminiResult);
 
+    const questionsFormat = test.questions.map((question, index) => ({
+      questionText: question.text,
+      options: question.options,
+      correctAnswer: question.correctAnswer,
+      userAnswer: userAnswers[question._id],
+      isCorrect: geminiResult.questionResults[index].isCorrect,
+      explanation: geminiResult.questionResults[index].explanation,
+    }));
+    console.log(questionsFormat);
+
     const testResult = new TestResult({
       userId: userId,
       testId: testId,
@@ -74,8 +84,10 @@ export async function submitTest(testId, userAnswers, userId) {
       correctAnswers: geminiResult.correctAnswers,
       wrongAnswers: geminiResult.wrongAnswers,
       analysis: geminiResult.analysis,
+      questions: questionsFormat,
       userAnswers: userAnswers,
     });
+    console.log(testResult, "the result we are getting");
 
     console.log("Saving test result...");
     await testResult.save();
@@ -91,6 +103,7 @@ export async function submitTest(testId, userAnswers, userId) {
 export async function getTestResult(resultId, userId) {
   try {
     await dbConnect();
+
     const testResult = await TestResult.findOne({
       _id: resultId,
       userId: userId,
@@ -109,12 +122,18 @@ export async function getTestResult(resultId, userId) {
       title: testResult.testId.title,
       date: testResult.createdAt,
       score: testResult.score,
-      questions: testResult.testId.questions.map((q, index) => ({
-        text: q.text,
-        userAnswer: testResult.userAnswers[index],
-        correctAnswer: q.correctAnswer,
-      })),
+      correctAnswers: testResult.correctAnswers,
+      wrongAnswers: testResult.wrongAnswers,
       analysis: testResult.analysis,
+      questions: testResult.questions.map((question, index) => ({
+        questionText: question.questionText,
+        options: question.options,
+        userAnswer: question.userAnswer,
+        correctAnswer: question.correctAnswer,
+        isCorrect: question.isCorrect,
+        explanation: question.explanation,
+      })),
+      userAnswers: Array.from(testResult.userAnswers.entries()), // Convert Map to Array if necessary
     };
 
     return {

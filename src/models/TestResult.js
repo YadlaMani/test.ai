@@ -27,6 +27,34 @@ const TestResultSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    questions: [
+      {
+        questionText: {
+          type: String,
+          required: true,
+        },
+        options: {
+          type: [String],
+          required: true,
+        },
+        correctAnswer: {
+          type: String,
+          required: true,
+        },
+        userAnswer: {
+          type: String,
+          required: true,
+        },
+        isCorrect: {
+          type: Boolean,
+          required: true,
+        },
+        explanation: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     userAnswers: {
       type: Map,
       of: String,
