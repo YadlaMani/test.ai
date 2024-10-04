@@ -57,6 +57,7 @@ const Dashboard = () => {
           </Link>
         </div>
       </div>
+
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <Loader2 className="h-8 w-8 animate-spin" />
@@ -73,6 +74,12 @@ const Dashboard = () => {
             />
           </CardContent>
         </Card>
+      ) : tests.length === 0 ? (
+        <div className="flex justify-center items-center h-64">
+          <p className="text-lg font-semibold text-gray-500">
+            You haven't given any tests yet.
+          </p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {tests.map((test) => (
@@ -84,6 +91,7 @@ const Dashboard = () => {
           ))}
         </div>
       )}
+
       {selectedTest && (
         <div className="mt-4">
           <Button onClick={() => setSelectedTest(null)}>
