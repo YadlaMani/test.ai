@@ -6,7 +6,7 @@ const TestQuestion = ({ question, index, onChange, userAnswer }) => {
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white dark:border shadow-md rounded-lg p-6 mb-6">
       <h2 className="text-xl font-semibold mb-4">Question {index + 1}</h2>
-      <p className="mb-4">{question.question}</p>
+      <p className="mb-4">{question.text}</p>
       <RadioGroup
         onValueChange={(value) => onChange(value)}
         value={userAnswer}

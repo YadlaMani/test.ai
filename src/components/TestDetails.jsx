@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -9,9 +8,13 @@ const TestDetails = ({ test, onClose }) => {
       <p className="text-sm text-gray-500 dark:text-gray-400">
         Date: {new Date(test.date).toLocaleDateString()}
       </p>
-      <p className="text-lg font-semibold dark:text-white">Score: {test.score}%</p>
+      <p className="text-lg font-semibold dark:text-white">
+        Score: {test.score}%
+      </p>
       <p className="dark:text-white">Duration: {test.duration} minutes</p>
-      <h3 className="text-xl font-semibold mt-6 mb-2 dark:text-white">Questions:</h3>
+      <h3 className="text-xl font-semibold mt-6 mb-2 dark:text-white">
+        Questions:
+      </h3>
       <ul className="space-y-4">
         {test.questions.map((question, index) => (
           <li key={index} className="border-b pb-4">
@@ -33,4 +36,3 @@ const TestDetails = ({ test, onClose }) => {
 };
 
 export default TestDetails;
-

@@ -28,6 +28,7 @@ export default function TestPage({ params }) {
 
   const fetchTest = async () => {
     const testData = await getTestById(testId);
+
     if (testData) {
       setTest(testData);
     } else {

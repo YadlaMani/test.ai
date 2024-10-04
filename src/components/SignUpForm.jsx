@@ -1,11 +1,10 @@
-
 "use client";
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
-import { Dropdown } from "../components/ui/dropdown";
+import { Dropdown } from "./ui/Dropdown";
 
 export function SignupForm() {
   const router = useRouter();
@@ -24,7 +23,10 @@ export function SignupForm() {
   };
 
   const handleDropdownChange = (selectedOption) => {
-    setFormData((prevData) => ({ ...prevData, role: selectedOption.toLowerCase() })); // Ensure it's lowercase
+    setFormData((prevData) => ({
+      ...prevData,
+      role: selectedOption.toLowerCase(),
+    })); // Ensure it's lowercase
   };
 
   const handleSubmit = async (e) => {
@@ -44,7 +46,9 @@ export function SignupForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        const errorMessage = Array.isArray(data.message) ? data.message.join(", ") : "Signup failed";
+        const errorMessage = Array.isArray(data.message)
+          ? data.message.join(", ")
+          : "Signup failed";
         throw new Error(errorMessage);
       }
 
@@ -101,7 +105,9 @@ export function SignupForm() {
           <Dropdown
             id="role"
             options={["Student", "Working professional"]}
-            selectedOption={formData.role.charAt(0).toUpperCase() + formData.role.slice(1)} // Displaying with first letter capital
+            selectedOption={
+              formData.role.charAt(0).toUpperCase() + formData.role.slice(1)
+            } // Displaying with first letter capital
             setSelectedOption={handleDropdownChange}
           />
         </div>
@@ -119,4 +125,3 @@ export function SignupForm() {
     </div>
   );
 }
-

@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { getUserTests, getTestResult } from "../../actions/testActions";
@@ -21,6 +20,7 @@ const Dashboard = () => {
       if (session?.user?.id) {
         setLoading(true);
         const userTests = await getUserTests(session.user.id);
+
         setTests(userTests);
         setLoading(false);
       }
@@ -31,6 +31,7 @@ const Dashboard = () => {
   const handleTestClick = async (test) => {
     setLoading(true);
     const result = await getTestResult(test.id, session.user.id);
+    console.log(result);
     if (result.success) {
       setSelectedTest(result.data);
     } else {
@@ -95,4 +96,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

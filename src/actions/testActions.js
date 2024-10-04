@@ -11,6 +11,7 @@ export async function createTest(testDetails) {
     await dbConnect();
 
     const questions = await generateQuestions(testDetails);
+    console.log(questions, "from create test");
 
     if (!Array.isArray(questions) || questions.length === 0) {
       throw new Error("Invalid questions generated");
@@ -34,6 +35,7 @@ export async function getTestById(testId) {
   try {
     await dbConnect();
     const test = await Test.findById(testId);
+    console.log(test, "From actions page");
     if (!test) {
       return null;
     }
