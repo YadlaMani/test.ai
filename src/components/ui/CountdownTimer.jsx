@@ -23,7 +23,7 @@ const CountdownTimer = ({ timeLimit }) => {
 
   return (
     <div
-      className={`fixed top-4 right-4 p-2 rounded shadow-lg text-lg ${percentageLeft <= 10 ? "bg-red-100 text-red-600" : "bg-gray-100 mt-16"
+      className={`fixed top-4 bg-white text-black dark:bg-black dark:text-white dark:border right-4 p-2 rounded shadow-lg text-lg ${percentageLeft <= 10 ? "bg-red-100 text-red-600" : "bg-gray-100 mt-16"
         }`}
     >
       Time Left: {formatTime(timeLeft)}

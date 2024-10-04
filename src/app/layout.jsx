@@ -36,9 +36,9 @@ export default function RootLayout({ children }) {
           <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 dark:bg-black h-screen">
             {children}
           </main>
-          <footer className="bottom left-0 w-full">
-            <Footer />
-          </footer>
+          {/* <footer className="bottom left-0 w-full"> */}
+          {/*   <Footer /> */}
+          {/* </footer> */}
         </Providers>
       </body>
     </html>
