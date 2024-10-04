@@ -18,12 +18,20 @@ const TestDetails = ({ test, onClose }) => {
       <ul className="space-y-4">
         {test.questions.map((question, index) => (
           <li key={index} className="border-b pb-4">
-            <p className="font-medium dark:text-white">{question.text}</p>
+            <p className="font-medium dark:text-white">
+              {question.questionText}
+            </p>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Your answer: {question.userAnswer}
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Correct answer: {question.correctAnswer}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {question.isCorrect ? "✅ Correct" : "❌ Incorrect"}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Explanation: {question.explanation}
             </p>
           </li>
         ))}
