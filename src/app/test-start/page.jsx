@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -13,6 +12,7 @@ import Link from "next/link";
 
 const TestStartPage = () => {
   const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [testDetails, setTestDetails] = useState({
     title: "",
@@ -40,13 +40,17 @@ const TestStartPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const response = await createTest(testDetails);
+
     if (response.success) {
       console.log("Test created successfully with ID:", response.testId);
       router.push(`/test/${response.testId}`);
     } else {
       console.error("Failed to create test:", response.error);
     }
+
+    setIsLoading(false);
   };
 
   if (status === "loading") {
@@ -60,7 +64,10 @@ const TestStartPage = () => {
   return (
     <div className="container mx-auto max-w-2xl p-6">
       <Link href="/dashboard" className="right-4 z-10 flex justify-end">
-        <Button variant="secondary" className="bg-black text-white dark:bg-white dark:text-black">
+        <Button
+          variant="secondary"
+          className="bg-black text-white dark:bg-white dark:text-black"
+        >
           Back to Dashboard
         </Button>
       </Link>
@@ -151,7 +158,7 @@ const TestStartPage = () => {
           </div>
 
           <Button type="submit" className="w-full">
-            Create Test
+            {isLoading ? "Creating test" : "Create test"}
           </Button>
         </form>
       </div>
@@ -160,4 +167,3 @@ const TestStartPage = () => {
 };
 
 export default TestStartPage;
-
