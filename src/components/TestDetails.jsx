@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const TestDetails = ({ test, onClose }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-8">
       <h2 className="text-2xl font-bold dark:text-white">{test.title}</h2>
       <p className="text-sm text-gray-500 dark:text-gray-400">
         Date: {new Date(test.date).toLocaleDateString()}
