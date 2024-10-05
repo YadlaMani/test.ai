@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { createTest } from "@/actions/testActions";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../../public/loading2.json';
+import loadingAnimationDark from '../../../public/loading.json';
 
 const TestStartPage = () => {
   const { data: session, status } = useSession();
@@ -48,6 +51,7 @@ const TestStartPage = () => {
       router.push(`/test/${response.testId}`);
     } else {
       console.error("Failed to create test:", response.error);
+      toast.error("Failed to create test. Please try again.");
     }
 
     setIsLoading(false);
@@ -59,6 +63,22 @@ const TestStartPage = () => {
 
   if (!session) {
     return null;
+  }
+
+  if (isLoading) {
+    // Determine which animation to use based on the theme
+    const animationData = document.body.classList.contains('dark') ? loadingAnimationDark : loadingAnimation;
+
+    return (
+      <div className="flex flex-col items-center justify-center h-screen w-screen bg-white dark:bg-black fixed top-0 left-0 z-50">
+        <Lottie 
+          animationData={animationData} 
+          loop={true} 
+          className="w-1/2 h-1/2" // Adjust size here
+        />
+        <p className="mt-4 text-lg text-gray-800 dark:text-white bounce">Creating test...</p>
+      </div>
+    );
   }
 
   return (

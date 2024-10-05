@@ -4,6 +4,7 @@ import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { ModeToggle } from "./ui/toggle";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -18,29 +19,18 @@ const Navbar = () => {
           Test.ai
         </div>
       </Link>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 items-center">
         <ModeToggle />
-        {/* {!session ? ( */}
-        {/*   <> */}
-        {/*     <Link href="/signin"> */}
-        {/*       <button className="px-4 py-2 text-white bg-black rounded hover:bg-white hover:text-black hover:border-black border"> */}
-        {/*         Sign In */}
-        {/*       </button> */}
-        {/*     </Link> */}
-        {/*     <Link href="/signup"> */}
-        {/*       <button className="px-4 py-2 text-white bg-gray-700 rounded hover:bg-white hover:text-black hover:border-black border"> */}
-        {/*         Sign Up */}
-        {/*       </button> */}
-        {/*     </Link> */}
-        {/*   </> */}
-        {/* ) : ( */}
-        {/*   <button */}
-        {/*     onClick={() => signOut()} */}
-        {/*     className="px-4 py-2 text-white bg-black rounded hover:bg-red-700" */}
-        {/*   > */}
-        {/*     Sign Out */}
-        {/*   </button> */}
-        {/* )} */}
+        {session ? (
+          <Button
+            onClick={() => signOut()}
+            className="px-4 py-2 text-white bg-black dark:bg-white dark:text-black rounded hover:bg-red-700 transition"
+          >
+            Sign Out
+          </Button>
+        ) : (
+          <></>
+        )}
       </div>
     </nav>
   );

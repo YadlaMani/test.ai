@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -10,6 +9,7 @@ import CountdownTimer from "@/components/ui/CountdownTimer";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import { MultiStepLoader } from "@/components/ui/multi-step-loader"; // Import the loader
 
 export default function TestPage({ params }) {
   const { testId } = params;
@@ -19,6 +19,13 @@ export default function TestPage({ params }) {
   const [userAnswers, setUserAnswers] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const loadingStates = [
+    { text: "Preparing your test submission..." },
+    { text: "Validating your answers..." },
+    { text: "Submitting your test..." },
+    { text: "Test submitted successfully!" },
+  ];
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -31,7 +38,6 @@ export default function TestPage({ params }) {
 
   const fetchTest = async () => {
     const testData = await getTestById(testId);
-
     if (testData) {
       setTest(testData);
     } else {
@@ -60,15 +66,10 @@ export default function TestPage({ params }) {
     }
 
     setIsSubmitting(true);
-    console.log("Submitting test...", {
-      testId,
-      userAnswers,
-      userId: session.user.id,
-    });
+
     const result = await submitTest(testId, userAnswers, session.user.id);
     setIsSubmitting(false);
 
-    console.log("Submit result:", result);
     if (result.success) {
       toast.success("Test submitted successfully");
       router.push(`/test-result/${result.resultId}`);
@@ -96,8 +97,11 @@ export default function TestPage({ params }) {
   };
 
   if (status === "loading" || !test) {
-    return <div><Loader2 className="h-8 w-8 animate-spin" />
-    </div>;
+    return (
+      <div>
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
   }
 
   if (status === "unauthenticated") {
@@ -134,14 +138,11 @@ export default function TestPage({ params }) {
       </div>
 
       <div className="mt-8 flex justify-between">
-        {/* Previous Question Button */}
         {currentQuestionIndex > 0 && (
           <Button onClick={handlePrevious} className="w-1/2 mr-2">
             Previous Question
           </Button>
         )}
-
-        {/* Next Question or Submit Button */}
         {!isLastQuestion ? (
           <Button onClick={handleNext} className="w-1/2">
             Next Question
@@ -156,7 +157,14 @@ export default function TestPage({ params }) {
           </Button>
         )}
       </div>
+
+      {/* MultiStepLoader for submission */}
+      <MultiStepLoader
+        loading={isSubmitting}
+        loadingStates={loadingStates}
+        duration={2000}
+        loop={false}
+      />
     </div>
   );
 }
-
