@@ -150,17 +150,21 @@ export const getUserTests = async (userId) => {
   try {
     await dbConnect();
     const testResults = await TestResult.find({ userId: userId })
-      .populate("testId", "title")
+      .populate("testId", "title") 
       .sort({ createdAt: -1 });
 
+    if (testResults.length === 0) {
+      console.warn("No test results found for user ID:", userId); 
+    }
+
     return testResults.map((result) => ({
-      id: result._id.toString(),
-      title: result.testId.title,
+      id: result._id.toString(), 
+      title: result.testId?.title || "Untitled Test",
       date: result.createdAt,
       score: result.score,
     }));
   } catch (error) {
-    console.error("Error fetching user tests:", error);
+    console.error("Error fetching user tests:", error); 
     return [];
   }
 };
