@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const TestResultSchema = new mongoose.Schema(
@@ -9,6 +10,11 @@ const TestResultSchema = new mongoose.Schema(
     testId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Test",
+      required: true,
+    },
+    difficulty: {
+      type: String,
+      enum: ["easy", "medium", "hard"],
       required: true,
     },
     score: {
@@ -66,3 +72,4 @@ const TestResultSchema = new mongoose.Schema(
 
 export default mongoose.models.TestResult ||
   mongoose.model("TestResult", TestResultSchema);
+
