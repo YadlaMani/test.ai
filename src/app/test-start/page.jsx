@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { createTest } from "@/actions";
+import { createTest } from "@/actions/testActions";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
@@ -158,7 +158,7 @@ const TestStartPage = () => {
           </div>
 
           <Button type="submit" className="w-full">
-            {isLoading ? "Creating test" : "Create test"}
+            {isLoading ? "Creating test..." : "Create test"}
           </Button>
         </form>
       </div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -44,6 +45,15 @@ export default function TestPage({ params }) {
   const handleSubmit = async () => {
     if (!session || !session.user) {
       toast.error("Please log in to submit the test");
+      return;
+    }
+
+    const unansweredQuestions = test.questions.filter(
+      (question) => !userAnswers[question._id]
+    );
+
+    if (unansweredQuestions.length > 0) {
+      toast.error("You must answer all questions");
       return;
     }
 
@@ -118,3 +128,4 @@ export default function TestPage({ params }) {
     </div>
   );
 }
+

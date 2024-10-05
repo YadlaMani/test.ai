@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { getTestResult } from "@/actions/testActions";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-import Link from "next/link"; // Link from Next.js for routing
+import Link from "next/link";
 
 const TestResultPage = ({ params }) => {
   const { data: session, status } = useSession();
@@ -40,13 +40,11 @@ const TestResultPage = ({ params }) => {
   return (
     <div className="relative">
       {" "}
-      {/* Use relative positioning */}
-      {/* Back to Dashboard button */}
       <div className="absolute top-4 right-4">
         <Link href="/dashboard">
           <Button
             variant="secondary"
-            className="bg-black text-white dark:bg-white dark:text-black"
+            className="bg-black text-white hover:bg-black dark:bg-white dark:text-black"
           >
             Back to Dashboard
           </Button>
