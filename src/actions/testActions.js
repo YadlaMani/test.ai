@@ -47,6 +47,7 @@ export async function getTestById(testId) {
   }
 }
 
+
 export async function submitTest(testId, userAnswers, userId) {
   try {
     await dbConnect();
@@ -80,6 +81,7 @@ export async function submitTest(testId, userAnswers, userId) {
     const testResult = new TestResult({
       userId: userId,
       testId: testId,
+      difficulty: test.difficulty, // Include difficulty level
       score: geminiResult.score,
       correctAnswers: geminiResult.correctAnswers,
       wrongAnswers: geminiResult.wrongAnswers,
@@ -186,3 +188,43 @@ export async function getAllTests() {
     throw new Error("Failed to fetch tests");
   }
 }
+
+
+export const getTestStats = async (userId) => {
+  try {
+    await dbConnect();
+
+    const stats = await TestResult.aggregate([
+      { $match: { userId: userId } },
+      {
+        $lookup: {
+          from: "tests",
+          localField: "testId",
+          foreignField: "_id",
+          as: "testDetails",
+        },
+      },
+      { $unwind: "$testDetails" },
+      {
+        $group: {
+          _id: "$testDetails.difficulty",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const easyCount = stats.find(stat => stat._id === "easy")?.count || 0;
+    const mediumCount = stats.find(stat => stat._id === "medium")?.count || 0;
+    const hardCount = stats.find(stat => stat._id === "hard")?.count || 0;
+
+    return {
+      easy: easyCount,
+      medium: mediumCount,
+      hard: hardCount,
+    };
+  } catch (error) {
+    console.error("Error fetching test stats:", error);
+    return { easy: 0, medium: 0, hard: 0 };
+  }
+};
+
