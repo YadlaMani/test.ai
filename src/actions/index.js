@@ -2,6 +2,7 @@
 
 import { generateQuestions } from "@/lib/gemini";
 import Test from "@/models/Test";
+import User from "@/models/user.model";
 import dbConnect from "@/lib/dbConnect";
 
 export async function createTest(testDetails) {
@@ -38,6 +39,20 @@ export async function getTestById(testId) {
 
     return JSON.parse(JSON.stringify(test));
   } catch (error) {
+    console.error("Error fetching test:", error);
+    return null;
+  }
+}
+export async function getUserDetails(userId) {
+  try {
+    await dbConnect();
+    const user = await User.findById(userId);
+    if (!user) {
+      return null;
+    } else {
+      return JSON.parse(JSON.stringify(user));
+    }
+  } catch (err) {
     console.error("Error fetching test:", error);
     return null;
   }
