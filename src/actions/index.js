@@ -53,7 +53,7 @@ export async function getUserDetails(userId) {
       return JSON.parse(JSON.stringify(user));
     }
   } catch (err) {
-    console.error("Error fetching test:", error);
+    console.error("Error fetching test:", err);
     return null;
   }
 }
