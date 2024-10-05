@@ -71,9 +71,9 @@ const TestStartPage = () => {
 
     return (
       <div className="flex flex-col items-center justify-center h-screen w-screen bg-white dark:bg-black fixed top-0 left-0 z-50">
-        <Lottie 
-          animationData={animationData} 
-          loop={true} 
+        <Lottie
+          animationData={animationData}
+          loop={true}
           className="w-1/2 h-1/2" // Adjust size here
         />
         <p className="mt-4 text-lg text-gray-800 dark:text-white bounce">Creating test...</p>
@@ -178,7 +178,7 @@ const TestStartPage = () => {
           </div>
 
           <Button type="submit" className="w-full">
-            {isLoading ? "Creating test..." : "Create test"}
+            {isLoading ? "Creating test..." : "Create Test With AI"}
           </Button>
         </form>
       </div>
