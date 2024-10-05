@@ -9,6 +9,7 @@ import TestQuestion from "@/components/TestQuestion";
 import CountdownTimer from "@/components/ui/CountdownTimer";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
 
 export default function TestPage({ params }) {
   const { testId } = params;
@@ -16,6 +17,7 @@ export default function TestPage({ params }) {
   const router = useRouter();
   const [test, setTest] = useState(null);
   const [userAnswers, setUserAnswers] = useState({});
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -76,54 +78,83 @@ export default function TestPage({ params }) {
     }
   };
 
+  const handleNext = () => {
+    if (currentQuestionIndex < test.questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
   const handleTimeUp = () => {
     toast.error("Time's up! Submitting your test.");
     handleSubmit();
   };
 
   if (status === "loading" || !test) {
-    return <div>Loading...</div>;
+    return <div><Loader2 className="h-8 w-8 animate-spin" />
+    </div>;
   }
 
   if (status === "unauthenticated") {
     return null;
   }
 
+  const currentQuestion = test.questions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === test.questions.length - 1;
+
   return (
     <div className="container mx-auto max-w-3xl p-6">
       <CountdownTimer timeLimit={test.timeLimit} onTimeUp={handleTimeUp} />
-      <h1 className="text-3xl font-bold mb-4">{test.title}</h1>
-      <p className="mb-4">{test.description}</p>
-      <div className="mb-4">
-        <strong>Difficulty:</strong> {test.difficulty}
+      <div className="px-4">
+        <h1 className="text-3xl font-bold mb-4">{test.title}</h1>
+        <p className="mb-4">{test.description}</p>
+        <div className="mb-4">
+          <strong>Difficulty:</strong> {test.difficulty}
+        </div>
+        <div className="mb-4">
+          <strong>Time Limit:</strong> {test.timeLimit} minutes
+        </div>
+        <div className="mb-6">
+          <strong>Tags:</strong> {test.tags.join(", ")}
+        </div>
       </div>
-      <div className="mb-4">
-        <strong>Time Limit:</strong> {test.timeLimit} minutes
-      </div>
-      <div className="mb-6">
-        <strong>Tags:</strong> {test.tags.join(", ")}
-      </div>
-
       <div className="space-y-8">
-        {test.questions.map((question, index) => (
-          <TestQuestion
-            key={question._id}
-            question={question}
-            index={index}
-            onChange={(answer) => handleAnswerChange(question._id, answer)}
-            userAnswer={userAnswers[question._id]}
-          />
-        ))}
+        <TestQuestion
+          key={currentQuestion._id}
+          question={currentQuestion}
+          index={currentQuestionIndex}
+          onChange={(answer) => handleAnswerChange(currentQuestion._id, answer)}
+          userAnswer={userAnswers[currentQuestion._id]}
+        />
       </div>
 
-      <div className="mt-8">
-        <Button
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          className="w-full"
-        >
-          {isSubmitting ? "Submitting..." : "Submit Test"}
-        </Button>
+      <div className="mt-8 flex justify-between">
+        {/* Previous Question Button */}
+        {currentQuestionIndex > 0 && (
+          <Button onClick={handlePrevious} className="w-1/2 mr-2">
+            Previous Question
+          </Button>
+        )}
+
+        {/* Next Question or Submit Button */}
+        {!isLastQuestion ? (
+          <Button onClick={handleNext} className="w-1/2">
+            Next Question
+          </Button>
+        ) : (
+          <Button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="w-1/2"
+          >
+            {isSubmitting ? "Submitting..." : "Submit Test"}
+          </Button>
+        )}
       </div>
     </div>
   );

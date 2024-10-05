@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 
 const TestQuestion = ({ question, index, onChange, userAnswer }) => {
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white dark:border shadow-md rounded-lg p-6 mb-6">
+    <div className="bg-white dark:bg-zinc-900 text-black dark:text-white shadow-md rounded-lg p-6 mb-6">
       <h2 className="text-xl font-semibold mb-4">Question {index + 1}</h2>
       <p className="mb-4">{question.text}</p>
       <RadioGroup
