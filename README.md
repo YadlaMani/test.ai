@@ -151,4 +151,4 @@ At **test.ai**, we are always innovating. Found a bug? Got a cool idea for a new
 
 ---
 
-Thank you for being a part of **test.ai**—where learning meets fun, progress is tracked, and growth never stops. Let's level up your knowledge today! 🌟
+Thank you for being a part of **test.ai**—where learning meets fun, progress is tracked, and growth never stops. Let's level up your knowledge today!
