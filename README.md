@@ -5,9 +5,11 @@ Welcome to **test.ai**, your go-to platform for personalized knowledge testing, 
 ## 🚀 Key Features
 
 ### 1. **User Authentication**
+
 - Simple and secure login/registration to track individual progress. Access your test history, save preferences, and resume anytime!
 
 ### 2. **Customizable Quizzes** 🛠️
+
 - **Choose your topic**: From programming to history, customize your quiz content.
 - **Number of questions**: Want a quick test? Set 5 questions. Want a challenge? Go for 50!
 - **Difficulty levels**: Test yourself on Easy, Medium, or Hard questions.
@@ -16,26 +18,33 @@ Welcome to **test.ai**, your go-to platform for personalized knowledge testing, 
 - **New**: Now supports **Image-based Questions** and **Drag-and-Drop** answers for interactive learning!
 
 ### 3. **Real-Time Assessments**
+
 - Immediate scoring after quiz completion, with detailed breakdowns by topic and difficulty.
 
 ### 4. **Collaborative Test-Taking** 🤝 (New!)
+
 - Study in groups! Host or join a collaborative quiz with friends or classmates and challenge each other to level up together.
 
 ### 5. **Personalized Feedback & Recommendations**
+
 - Beyond the score: After each test, get personalized feedback with actionable insights on how to improve. Our smart recommendation engine will guide you toward relevant resources, quizzes, and study materials.
 
 ### 6. **Progress Tracking** 📈
+
 - Track your performance over time! Get detailed analytics to visualize your growth and set milestones. Whether you're studying for an exam or improving specific skills, see how far you’ve come.
 
 ### 7. **Gamification & Badges** 🏆 (New!)
+
 - **Earn Badges**: Complete quizzes, reach milestones, or get top scores to unlock badges!
 - **Activity Monitoring**: Monitor your activity and unlock achievements based on your consistency, speed, and performance.
 - **Leaderboard**: Compete with other learners globally and see how you rank across different subjects!
 
 ### 8. **Diverse Test Formats** 📝 (New!)
+
 - In addition to traditional quizzes, try **Timed Challenges**, **Scenario-Based Quizzes**, and **Simulation Tests** for more in-depth assessments.
-  
+
 ### 9. **Custom Learning Paths** (New!)
+
 - We know every learner is unique! Create your custom learning path and tailor quizzes to meet your goals. Our AI-powered platform adapts to your needs and suggests personalized study plans.
 
 ---
@@ -53,7 +62,9 @@ Welcome to **test.ai**, your go-to platform for personalized knowledge testing, 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 Ensure you have the following to run **test.ai** locally:
+
 - **Node.js v16 or higher**
 - **npm** or **yarn** package manager
 - **MongoDB** instance (local or cloud-based)
@@ -117,7 +128,9 @@ Deploy **test.ai** effortlessly on platforms like Vercel by following these step
 ## 🎮 Gamified Learning
 
 ### How to Level Up 🚀
+
 With the new gamification features, you can turn studying into a fun competition! Here's how to make the most of it:
+
 - **Earn Points** for every quiz you take, based on accuracy, speed, and consistency.
 - **Climb the Leaderboard** by challenging your friends or fellow students in collaborative quizzes.
 - **Unlock Badges** for hitting study streaks, perfect scores, and more!

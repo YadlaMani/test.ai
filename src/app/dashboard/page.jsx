@@ -1,7 +1,10 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
-import { getUserTests, getTestResult, getTestStats } from "../../actions/testActions";
+import {
+  getUserTests,
+  getTestResult,
+  getTestStats,
+} from "../../actions/testActions";
 import TestCard from "../../components/TestCard";
 import TestDetails from "../../components/TestDetails";
 import { useSession } from "next-auth/react";
@@ -35,11 +38,9 @@ const Dashboard = () => {
         const userTests = await getUserTests(session.user.id);
         const userdata = await getUserDetails(session.user.id);
         const stats = await getTestStats(session.user.id);
-        // console.log(userdata);
         setUserDetails(userdata);
         setTestStats(stats);
-        console.log("User Data:", userdata);
-        console.log("Test Stats:", stats);
+
         const totalTests = userTests.length;
         const totalAccuracy = userTests.reduce(
           (acc, test) => acc + test.score,
@@ -63,7 +64,6 @@ const Dashboard = () => {
   const handleTestClick = async (test) => {
     setLoading(true);
     const result = await getTestResult(test.id, session.user.id);
-    console.log(result);
     if (result.success) {
       setSelectedTest(result.data);
     } else {
@@ -73,31 +73,28 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 pb-16 flex flex-col">
-      <div className="mx-4 flex flex-row">
+    <div className="container mx-auto p-4 sm:p-6 flex flex-col">
+      <div className="mx-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* User Details Card */}
-        <Card className="mb-6 py-4 shadow-lg w-1/6 mx-2 dark:border-0 dark:bg-zinc-900">
+        <Card className="shadow-lg transition-transform hover:scale-105 dark:bg-zinc-900 bg-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-center text-gray-900 dark:text-white">
               {userDetails ? `${userDetails.name}'s Dashboard` : "Loading..."}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 gap-1">
-              {/* Name */}
-              <div className=" text-start">
+            <div className="grid grid-cols-2 gap-2">
+              <div>
                 <p className="text-lg font-medium dark:text-white">
                   {userDetails?.name || "N/A"}
                 </p>
               </div>
-              {/* Email */}
-              <div className="col-span-2 text-start">
+              <div className="col-span-2">
                 <p className="text-normal dark:text-gray-300">
                   {userDetails?.email || "N/A"}
                 </p>
               </div>
-              {/* Role */}
-              <div className="col-span-2 text-start">
+              <div className="col-span-2">
                 <p className="text-normal dark:text-gray-300">
                   {userDetails?.role || "N/A"}
                 </p>
@@ -107,30 +104,30 @@ const Dashboard = () => {
         </Card>
 
         {/* Test Summary Section */}
-        <Card className="mb-6 shadow-lg w-2/6 mx-2 dark:border-0 dark:bg-zinc-900">
+        <Card className="shadow-lg transition-transform hover:scale-105 dark:bg-zinc-900 bg-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
               Summary
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-2 text-center md:text-left">
-            <div className="text-center">
-              <div className="flex justify-center items-center mx-auto w-28 h-28 bg-gray-200 dark:bg-zinc-700 rounded-full">
-                <p className="text-2xl font-medium dark:text-white">
+          <CardContent className="grid grid-cols-2 text-center gap-4">
+            <div>
+              <div className="flex justify-center items-center mx-auto w-20 h-20 sm:w-28 sm:h-28 bg-gradient-to-br from-green-400 to-blue-500 rounded-full">
+                <p className="text-xl sm:text-2xl font-medium text-white">
                   {testSummary.totalTests}
                 </p>
               </div>
-              <p className="text-lg font-medium text-black dark:text-white mt-2">
+              <p className="text-base sm:text-lg font-medium text-black dark:text-white mt-2">
                 Total Tests Taken
               </p>
             </div>
-            <div className="text-center">
-              <div className="flex justify-center items-center mx-auto w-28 h-28 bg-gray-200 dark:bg-zinc-700 rounded-full">
-                <p className="text-2xl font-medium dark:text-white">
+            <div>
+              <div className="flex justify-center items-center mx-auto w-20 h-20 sm:w-28 sm:h-28 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full">
+                <p className="text-xl sm:text-2xl font-medium text-white">
                   {testSummary.avgAccuracy}%
                 </p>
               </div>
-              <p className="text-lg text-black font-medium dark:text-white mt-2">
+              <p className="text-base sm:text-lg text-black font-medium dark:text-white mt-2">
                 Average Accuracy
               </p>
             </div>
@@ -138,40 +135,40 @@ const Dashboard = () => {
         </Card>
 
         {/* Test Stats Section */}
-        <Card className="mb-6 shadow-lg w-3/6 mx-2 dark:border-0 dark:bg-zinc-900">
+        <Card className="shadow-lg transition-transform hover:scale-105 dark:bg-zinc-900 bg-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
               Test Stats
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-3 text-center">
-            <div className="text-center">
-              <div className="flex justify-center items-center mx-auto w-28 h-28 bg-gray-200 dark:bg-zinc-700 rounded-full">
-                <p className="text-2xl font-medium dark:text-white">
+          <CardContent className="grid grid-cols-3 text-center gap-4">
+            <div>
+              <div className="flex justify-center items-center mx-auto w-20 h-20 sm:w-28 sm:h-28 bg-blue-200 dark:bg-zinc-700 rounded-full">
+                <p className="text-xl sm:text-2xl font-medium dark:text-white">
                   {testStats.easy}
                 </p>
               </div>
-              <p className="text-lg font-medium text-black dark:text-white mt-2">
+              <p className="text-base sm:text-lg font-medium text-black dark:text-white mt-2">
                 Easy Tests
               </p>
             </div>
-            <div className="text-center">
-              <div className="flex justify-center items-center mx-auto w-28 h-28 bg-gray-200 dark:bg-zinc-700 rounded-full">
-                <p className="text-2xl font-medium dark:text-white">
+            <div>
+              <div className="flex justify-center items-center mx-auto w-20 h-20 sm:w-28 sm:h-28 bg-yellow-200 dark:bg-zinc-700 rounded-full">
+                <p className="text-xl sm:text-2xl font-medium dark:text-white">
                   {testStats.medium}
                 </p>
               </div>
-              <p className="text-lg text-black font-medium dark:text-white mt-2">
+              <p className="text-base sm:text-lg text-black font-medium dark:text-white mt-2">
                 Medium Tests
               </p>
             </div>
-            <div className="text-center">
-              <div className="flex justify-center items-center mx-auto w-28 h-28 bg-gray-200 dark:bg-zinc-700 rounded-full">
-                <p className="text-2xl font-medium dark:text-white">
+            <div>
+              <div className="flex justify-center items-center mx-auto w-20 h-20 sm:w-28 sm:h-28 bg-red-200 dark:bg-zinc-700 rounded-full">
+                <p className="text-xl sm:text-2xl font-medium dark:text-white">
                   {testStats.hard}
                 </p>
               </div>
-              <p className="text-lg font-medium text-black dark:text-white mt-2">
+              <p className="text-base sm:text-lg font-medium text-black dark:text-white mt-2">
                 Hard Tests
               </p>
             </div>
@@ -179,20 +176,20 @@ const Dashboard = () => {
         </Card>
       </div>
 
-      <div className="w-full">
+      <div className="w-full mt-8">
         {/* Test List Section */}
-        <div className="flex justify-between items-center mb-6 px-6">
-          <h1 className="text-3xl font-bold dark:text-white">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 px-6">
+          <h1 className="text-2xl sm:text-3xl font-bold dark:text-white">
             Your Previous Test Results
           </h1>
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-col sm:flex-row gap-2 mt-4 sm:mt-0">
             <Link href="/community">
-              <Button className="bg-black text-white dark:bg-white dark:text-black">
+              <Button className="bg-gradient-to-r from-green-400 to-blue-500 text-white w-full sm:w-auto">
                 Available Tests
               </Button>
             </Link>
             <Link href="/test-start">
-              <Button className="bg-black text-white dark:bg-white dark:text-black">
+              <Button className="bg-gradient-to-r from-purple-400 to-pink-500 text-white w-full sm:w-auto">
                 Create New Test With AI
               </Button>
             </Link>
@@ -201,25 +198,16 @@ const Dashboard = () => {
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <Loader2 className="h-8 w-8 animate-spin" />
+            <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
           </div>
         ) : selectedTest ? (
-          <div className="dark:bg-zinc-900 shadow-lg rounded-xl mx-10">
-            <CardContent>
-              <TestDetails
-                test={selectedTest}
-                onClose={() => setSelectedTest(null)}
-              />
-            </CardContent>
+          <div className="dark:bg-zinc-900 shadow-lg rounded-xl mx-2 sm:mx-10 p-4">
+            <Card>
+              <TestDetails test={selectedTest} />
+            </Card>
           </div>
-        ) : tests.length === 0 ? (
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg font-semibold text-gray-500">
-              You haven't given any tests yet.
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 gap-4">
+        ) : tests.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {tests.map((test) => (
               <TestCard
                 key={test.id}
@@ -228,14 +216,8 @@ const Dashboard = () => {
               />
             ))}
           </div>
-        )}
-
-        {selectedTest && (
-          <div className="mt-4">
-            <Button onClick={() => setSelectedTest(null)}>
-              Back to All Tests
-            </Button>
-          </div>
+        ) : (
+          <p className="text-center text-xl dark:text-white">No tests found.</p>
         )}
       </div>
     </div>
@@ -243,4 +225,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
