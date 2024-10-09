@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { Providers } from "@/components/providers";
 import { Footer } from "@/components/Footer";
 
-
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,7 +27,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans dark:bg-black`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans dark:bg-black`}
+      >
+        <Analytics />
         <Providers>
           <Toaster />
           <header className="flex-none w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
