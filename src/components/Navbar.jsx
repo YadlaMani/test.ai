@@ -20,6 +20,9 @@ const Navbar = () => {
         </div>
       </Link>
       <div className="flex space-x-4 items-center">
+        <Button>
+          <a href="https://github.com/YadlaMani/test.ai" target="_blank">Github</a>
+        </Button>
         <ModeToggle />
         {session ? (
           <Button
