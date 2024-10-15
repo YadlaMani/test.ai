@@ -26,7 +26,7 @@ const Navbar = () => {
         <ModeToggle />
         {session ? (
           <Button
-            onClick={() => signOut()}
+            onClick={() => signOut( { callbackUrl: '/' } )}
             className="px-4 py-2 text-white bg-black dark:bg-white dark:text-black rounded hover:bg-red-700 transition"
           >
             Sign Out
