@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { signIn } from "next-auth/react";
+import Link from "next/link"
 
 export function SignInForm() {
   const router = useRouter();
@@ -48,7 +49,16 @@ export function SignInForm() {
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
         Sign in to your account to continue using the app.
       </p>
-
+      <div className=" mt-4 flex flex-row gap-2  ">
+            <p>
+           Don't have an account?  
+            </p>
+            <button className="cursor-pointer  text-blue-500"  >
+              <Link href={'/signup'}>
+              sign up
+              </Link>
+              </button>
+          </div>
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-4 mb-4">
           <Label htmlFor="email">Email Address</Label>
@@ -81,6 +91,7 @@ export function SignInForm() {
         >
           {loading ? "Signing in..." : "Sign in"}
         </button>
+         
       </form>
     </div>
   );
