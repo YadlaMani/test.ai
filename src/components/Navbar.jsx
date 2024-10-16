@@ -20,10 +20,13 @@ const Navbar = () => {
         </div>
       </Link>
       <div className="flex space-x-4 items-center">
+        <Button>
+          <a href="https://github.com/YadlaMani/test.ai" target="_blank">Github</a>
+        </Button>
         <ModeToggle />
         {session ? (
           <Button
-            onClick={() => signOut()}
+            onClick={() => signOut( { callbackUrl: '/' } )}
             className="px-4 py-2 text-white bg-black dark:bg-white dark:text-black rounded hover:bg-red-700 transition"
           >
             Sign Out
