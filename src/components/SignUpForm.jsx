@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Dropdown } from "./ui/Dropdown";
+import Link from "next/link"
 
 export function SignupForm() {
   const router = useRouter();
@@ -68,6 +69,16 @@ export function SignupForm() {
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
         Sign up for an account to start using the app.
       </p>
+      <div className=" mt-4 flex flex-row gap-2  ">
+            <p>
+           Already have an account?  
+            </p>
+            <button className="cursor-pointer  text-blue-500"  >
+              <Link href={'/signin'}>
+              sign in
+              </Link>
+              </button>
+       </div>
 
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-4 mb-4">
