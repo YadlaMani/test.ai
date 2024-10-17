@@ -98,15 +98,15 @@ export const InfiniteMovingCards = ({
                 src={item.img}
               />
               <div className="flex flex-col">
-                <figcaption className="text-sm font-medium dark:text-white">
+                <figcaption className="text-sm font-medium font-sans dark:text-white">
                   {item.name}
                 </figcaption>
-                <p className="text-xs font-medium dark:text-white/40">
+                <p className="text-xs font-medium font-sans dark:text-white/40">
                   {item.title}
                 </p>
               </div>
             </div>
-            <blockquote className="mt-2 text-sm">{item.quote}</blockquote>
+            <blockquote className="mt-2 text-sm font-sans">{item.quote}</blockquote>
           </li>
         ))}
       </ul>
