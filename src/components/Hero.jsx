@@ -18,7 +18,7 @@ export function Hero() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeInOut", delay: 0 }}
-            className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400 bg-opacity-5 text-center py-2 "
+            className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400 bg-opacity-5 text-center py-2"
           >
             Empower your learning with AI
           </motion.h1>
@@ -34,29 +34,29 @@ export function Hero() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.65 }}
-            className="mt-4 flex flex-row gap-2 justify-center"
+            className="mt-6 flex flex-col sm:flex-row gap-4 justify-center"
           >
             {session ? (
               <Link href="/dashboard">
-                <Button variant="default" className="w-40 h-12 text-xl">
+                <Button variant="default" className="w-52 h-14 text-xl rounded-full flex items-center justify-center">
                   Go to Dashboard
                 </Button>
               </Link>
             ) : (
               <>
-                <Link href="/signin" className="flex my-2 ">
+                <Link href="/signin" className="flex">
                   <Button
                     variant="default"
-                    className=" h-12 text-xl rounded-full flex items-center justify-center gap-2 group "
+                    className="w-52 h-14 text-xl rounded-full flex items-center justify-center gap-2 group"
                   >
                     Sign In{" "}
                     <ArrowUpRight className="size-6 group-hover:rotate-45 transition-all duration-300" />
                   </Button>
                 </Link>
-                <Link href="/signup" className="flex my-2 group">
+                <Link href="/signup" className="flex">
                   <Button
                     variant="secondary"
-                    className=" h-12 text-xl rounded-full flex items-center justify-center gap-2 group "
+                    className="w-52 h-14 text-xl rounded-full flex items-center justify-center gap-2 group"
                   >
                     Sign Up{" "}
                     <ArrowUpRight className="size-6 group-hover:rotate-45 transition-all duration-300" />
