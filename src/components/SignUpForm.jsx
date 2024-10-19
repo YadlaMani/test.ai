@@ -73,9 +73,9 @@ export function SignupForm() {
             <p>
            Already have an account?  
             </p>
-            <button className="cursor-pointer  text-blue-500"  >
+            <button className="cursor-pointer  text-blue-500 underline"  >
               <Link href={'/signin'}>
-              sign in
+              Sign in
               </Link>
               </button>
        </div>
