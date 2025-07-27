@@ -69,6 +69,7 @@ export function SignInForm() {
             type="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
 
           <Label htmlFor="password">Password</Label>
@@ -79,6 +80,7 @@ export function SignInForm() {
             type="password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
         </div>
 

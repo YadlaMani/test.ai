@@ -90,6 +90,7 @@ export function SignupForm() {
             type="text"
             value={formData.name}
             onChange={handleChange}
+            required
           />
 
           <Label htmlFor="email">Email Address</Label>
@@ -100,6 +101,7 @@ export function SignupForm() {
             type="email"
             value={formData.email}
             onChange={handleChange}
+
           />
 
           <Label htmlFor="password">Password</Label>
@@ -110,6 +112,7 @@ export function SignupForm() {
             type="password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
 
           <Label htmlFor="role">Role</Label>
